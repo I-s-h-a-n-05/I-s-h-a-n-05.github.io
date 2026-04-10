@@ -1,34 +1,1119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ishan Pandit | AI/ML Engineer</title>
-    <meta
-      name="description"
-      content="AI/ML Engineer portfolio showcasing deployed machine learning, NLP, RAG, and computer vision projects."
-    />
-    <meta name="author" content="Ishan Pandit" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ishan — AI/ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <meta property="og:title" content="Ishan Pandit | AI/ML Engineer" />
-    <meta
-      property="og:description"
-      content="Portfolio of Ishan Pandit featuring AI, ML, NLP, and deployed full-stack AI projects."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
+    :root {
+      --bg:       #070710;
+      --bg1:      #0D0D1A;
+      --bg2:      #121224;
+      --border:   rgba(255,255,255,0.07);
+      --border2:  rgba(255,255,255,0.13);
+      --accent:   #CDFF6B;
+      --a-rgb:    205, 255, 107;
+      --coral:    #FF7252;
+      --text:     #F0EDE6;
+      --muted:    #6B7280;
+      --muted2:   #94A3B8;
+      --blue:     #60A5FA;
+      --blue-rgb: 96,165,250;
+      --purple:   #D77BFF;
+      --pur-rgb:  215,123,255;
+      --green:    #6EE7B7;
+      --grn-rgb:  110,231,183;
+    }
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ishan Pandit | AI/ML Engineer" />
-    <meta
-      name="twitter:description"
-      content="Portfolio of Ishan Pandit featuring AI, ML, NLP, and deployed full-stack AI projects."
-    />
-    <meta name="twitter:image" content="/og-image.png" />
-  </head>
+    html { scroll-behavior: smooth; }
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Figtree', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─────── NAV ─────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(7, 7, 16, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted2);
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.22s ease;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 7px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .nav-cta:hover { background: #b8f050; transform: translateY(-1px); }
+
+    /* ─────── HERO ─────── */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Grid background */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+    }
+    /* Vignette over grid */
+    .hero-grid::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, var(--bg) 100%);
+    }
+
+    /* Glow orbs */
+    .glow-a {
+      position: absolute;
+      top: 10%; right: 5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(var(--a-rgb), 0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .glow-b {
+      position: absolute;
+      bottom: 10%; left: -8%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(var(--blue-rgb), 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--accent);
+    }
+
+    h1.hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 11.5vw, 148px);
+      line-height: 0.88;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 30px;
+    }
+    h1.hero-name .ln {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-bio {
+      font-size: 17px;
+      color: var(--muted2);
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: 42px;
+    }
+    .hero-bio strong { color: var(--text); font-weight: 600; }
+
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn-p {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.2px;
+      transition: all 0.2s;
+    }
+    .btn-p:hover {
+      background: #b8f050;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px rgba(var(--a-rgb), 0.28);
+    }
+
+    .btn-s {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--muted2);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border2);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-s:hover { color: var(--text); border-color: var(--border2); transform: translateY(-2px); }
+    .btn-s:hover { border-color: rgba(var(--a-rgb), 0.4); }
+
+    /* Hero right card */
+    .hero-card {
+      background: var(--bg1);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+    }
+    .hc-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hc-stat {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .hc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hc-desc { font-size: 12px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+    .hc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+    .hc-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--muted2);
+    }
+    .hc-tag.hi {
+      background: rgba(var(--a-rgb), 0.09);
+      border-color: rgba(var(--a-rgb), 0.25);
+      color: var(--accent);
+    }
+    .hc-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 12px;
+    }
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+      animation: blink 2.2s ease infinite;
+    }
+    @keyframes blink {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+      50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+    }
+
+    /* ─────── STAT STRIP ─────── */
+    .strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 22px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 40px;
+      border-right: 1px solid var(--border);
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .strip-label { font-size: 12px; color: var(--muted2); font-weight: 500; line-height: 1.4; }
+
+    /* ─────── SECTION COMMON ─────── */
+    section.sec {
+      padding: 100px 48px;
+    }
+    .sec-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sec-eye {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(46px, 6.5vw, 76px);
+      color: var(--text);
+      line-height: 0.9;
+      margin-bottom: 56px;
+    }
+
+    /* ─────── PROJECTS ─────── */
+    #projects { border-top: 1px solid var(--border); }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .proj-card {
+      --c: #fff;
+      --c-rgb: 255,255,255;
+      background: var(--bg1);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--c);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .proj-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55),
+                  0 0 0 1px rgba(var(--c-rgb), 0.18);
+    }
+
+    .card-neuro    { --c: var(--blue);   --c-rgb: var(--blue-rgb); }
+    .card-sentiment{ --c: var(--purple); --c-rgb: var(--pur-rgb);  }
+    .card-doctalk  { --c: var(--green);  --c-rgb: var(--grn-rgb);  }
+
+    .proj-head { padding: 22px 22px 0; }
+    .proj-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--c);
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+    .proj-icon {
+      width: 42px; height: 42px;
+      border-radius: 11px;
+      background: rgba(var(--c-rgb), 0.1);
+      border: 1px solid rgba(var(--c-rgb), 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      margin-bottom: 14px;
+    }
+    .proj-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      color: var(--text);
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    .proj-cat {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--c);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .proj-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 0 -22px 0;
+    }
+
+    .proj-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .proj-desc {
+      font-size: 13.5px;
+      color: var(--muted2);
+      line-height: 1.75;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 20px;
+    }
+    .stag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(var(--c-rgb), 0.07);
+      border: 1px solid rgba(var(--c-rgb), 0.17);
+      color: var(--c);
+    }
+    .proj-links { display: flex; gap: 8px; }
+    .lnk-live {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: rgba(var(--c-rgb), 0.1);
+      border: 1px solid rgba(var(--c-rgb), 0.22);
+      color: var(--c);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 9px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.4px;
+      transition: all 0.2s;
+    }
+    .lnk-live:hover { background: rgba(var(--c-rgb), 0.18); transform: translateY(-1px); }
+    .lnk-gh {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--muted2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .lnk-gh:hover { border-color: var(--border2); color: var(--text); }
+    .lnk-soon {
+      opacity: 0.4;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* ─────── ABOUT ─────── */
+    #about { border-top: 1px solid var(--border); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .about-bio {
+      font-size: 17px;
+      color: var(--muted2);
+      line-height: 1.85;
+    }
+    .about-bio p { margin-bottom: 18px; }
+    .about-bio strong { color: var(--text); font-weight: 600; }
+    .about-bio em { color: var(--accent); font-style: normal; font-weight: 600; }
+    .about-right { display: flex; flex-direction: column; gap: 14px; }
+    .about-fact {
+      background: var(--bg1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .fact-icon { font-size: 20px; margin-top: 1px; flex-shrink: 0; }
+    .fact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .fact-value { font-size: 14px; color: var(--text); font-weight: 500; }
+
+    /* ─────── SKILLS ─────── */
+    #skills { border-top: 1px solid var(--border); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .skill-grp {
+      background: var(--bg1);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 24px;
+      transition: border-color 0.2s;
+    }
+    .skill-grp:hover { border-color: var(--border2); }
+    .sg-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .sg-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .sk {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted2);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 20px;
+      transition: all 0.15s;
+      cursor: default;
+    }
+    .sk:hover { border-color: rgba(var(--a-rgb), 0.35); color: var(--accent); }
+
+    /* ─────── CONTACT ─────── */
+    #contact { border-top: 1px solid var(--border); }
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5.5vw, 66px);
+      color: var(--text);
+      line-height: 0.95;
+      margin-bottom: 22px;
+    }
+    .contact-head span { color: var(--accent); }
+    .contact-sub {
+      font-size: 16px;
+      color: var(--muted2);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 32px;
+    }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(var(--a-rgb), 0.5);
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+    .socials { display: flex; flex-direction: column; gap: 10px; min-width: 230px; }
+    .soc-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px;
+      background: var(--bg1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--muted2);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .soc-link:hover { border-color: var(--border2); color: var(--text); transform: translateX(5px); }
+    .soc-icon { font-size: 16px; width: 22px; text-align: center; flex-shrink: 0; }
+
+    /* ─────── FOOTER ─────── */
+    footer {
+      padding: 28px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .foot-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .foot-copy { font-size: 12px; color: var(--muted); }
+
+    /* ─────── ANIMATIONS ─────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: 0.08s; }
+    .rd2 { transition-delay: 0.16s; }
+    .rd3 { transition-delay: 0.24s; }
+
+    /* Hero staggered load */
+    .ha { animation: hIn 0.75s ease both; }
+    .ha2 { animation: hIn 0.75s 0.12s ease both; }
+    .ha3 { animation: hIn 0.75s 0.24s ease both; }
+    .ha4 { animation: hIn 0.75s 0.38s ease both; }
+    .ha5 { animation: hIn 0.75s 0.52s ease both; }
+    @keyframes hIn {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────── MOBILE ─────── */
+    @media (max-width: 940px) {
+      nav { padding: 0 24px; }
+      .nav-right .nav-link { display: none; }
+      .hero { padding: 100px 24px 64px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card { max-width: 400px; }
+      section.sec { padding: 72px 24px; }
+      .strip { padding: 18px 24px; flex-wrap: wrap; gap: 16px; }
+      .strip-item { padding: 0 20px; }
+      .proj-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 36px; }
+      .socials { flex-direction: row; flex-wrap: wrap; }
+      .soc-link { flex: 1; min-width: 160px; }
+      footer { padding: 22px 24px; flex-direction: column; gap: 6px; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      nav { padding: 0 16px; }
+      .hero { padding: 88px 18px 56px; }
+      section.sec { padding: 56px 18px; }
+      .strip-item { border-right: none; border-bottom: 1px solid var(--border); padding: 10px 0; width: 100%; }
+      .strip-item:last-child { border-bottom: none; }
+    }
+
+    /* SVG icon helper */
+    .ico { display: inline-block; vertical-align: middle; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="nav-logo">ishan.dev</a>
+  <div class="nav-right">
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#about"    class="nav-link">About</a>
+    <a href="#skills"   class="nav-link">Skills</a>
+    <a href="#contact"  class="nav-link">Contact</a>
+    <a href="https://github.com/I-s-h-a-n-05" target="_blank" class="nav-cta">GitHub ↗</a>
+  </div>
+</nav>
+
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-label="Introduction">
+  <div class="hero-grid"></div>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow ha">AI/ML Engineer · 3rd Year CS</div>
+      <h1 class="hero-name ha2">
+        ISHAN
+        <span class="ln">PANDIT</span>
+      </h1>
+      <p class="hero-bio ha3">
+        Building <strong>production-grade AI systems</strong> from first principles —
+        medical image classifiers, real-time NLP pipelines, and RAG-powered document AI.
+        Turning coursework and research into <strong>deployed applications</strong> with real users.
+      </p>
+      <div class="hero-ctas ha4">
+        <a href="#projects" class="btn-p">View Projects ↓</a>
+        <a href="https://www.linkedin.com/in/ishan-pandit-6235ab278?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="btn-s">
+          <svg class="ico" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="/cdn-cgi/l/email-protection#c4adb7aca5aaf4f1b4a5aaa0adb084a3a9a5ada8eaa7aba9" class="btn-s">✉ Email</a>
+      </div>
+    </div>
+
+    <div class="hero-card ha5">
+      <div class="hc-label">// snapshot</div>
+      <div class="hc-stat">
+        <span class="hc-num">3</span>
+        <span class="hc-desc">AI projects<br>built & deployed </span>
+      </div>
+      <div class="hc-tags">
+        <span class="hc-tag hi">PyTorch</span>
+        <span class="hc-tag hi">RAG</span>
+        <span class="hc-tag">Streamlit</span>
+        <span class="hc-tag">FAISS</span>
+        <span class="hc-tag">Groq</span>
+        <span class="hc-tag">HuggingFace</span>
+        <span class="hc-tag">Flask</span>
+        <span class="hc-tag">SQLite</span>
+      </div>
+      <div class="hc-status">
+        <div class="status-dot"></div>
+        Deploying DocTalk → Streamlit Cloud
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ STAT STRIP ═══ -->
+<div class="strip">
+  <div class="strip-item">
+    <span class="strip-num">3</span>
+    <span class="strip-label">AI projects<br>deployed</span>
+  </div>
+  <div class="strip-item">
+    <span class="strip-num">3</span>
+    <span class="strip-label">cloud platforms<br>(HuggingFace, Streamlit, GitHub)</span>
+  </div>
+  <div class="strip-item">
+    <span class="strip-num">4</span>
+    <span class="strip-label">ML specialisations<br>(CV, NLP, LLMs, RAG)</span>
+  </div>
+  <div class="strip-item">
+    <span class="strip-num">∞</span>
+    <span class="strip-label">more<br>in progress</span>
+  </div>
+</div>
+
+
+<!-- ═══ PROJECTS ═══ -->
+<section class="sec" id="projects">
+  <div class="sec-inner">
+    <div class="sec-eye reveal">02 / projects</div>
+    <div class="sec-title reveal">SELECTED<br>WORK</div>
+
+    <div class="proj-grid">
+
+      <!-- NeuroScan -->
+      <div class="proj-card card-neuro reveal">
+        <div class="proj-head">
+          <div class="proj-num">01 &mdash; LIVE ON HUGGINGFACE</div>
+          <div class="proj-icon">🧠</div>
+          <div class="proj-name">NeuroScan</div>
+          <div class="proj-cat">Medical AI · Computer Vision</div>
+          <div class="proj-sep"></div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">
+            Brain tumor classification from MRI scans using EfficientNetB0 transfer learning —
+            four tumor types (Glioma, Meningioma, Pituitary, None). Fine-tuned with focal loss
+            and class weights for robust recall. Generates clinical-grade PDF reports and
+            maintains a SQLite-backed scan history with full CRUD.
+          </p>
+          <div class="proj-stack">
+            <span class="stag">PyTorch</span>
+            <span class="stag">EfficientNetB0</span>
+            <span class="stag">Flask</span>
+            <span class="stag">Transfer Learning</span>
+            <span class="stag">Focal Loss</span>
+            <span class="stag">ReportLab</span>
+            <span class="stag">SQLite</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://huggingface.co/spaces/Ishan05/NeuroScan"
+               target="_blank" class="lnk-live">↗ Live Demo</a>
+            <a href="https://github.com/I-s-h-a-n-05/Brain-tumor-Detection"
+               target="_blank" class="lnk-gh">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SentimentScope -->
+      <div class="proj-card card-sentiment reveal rd1">
+        <div class="proj-head">
+          <div class="proj-num">02 &mdash; LIVE ON STREAMLIT</div>
+          <div class="proj-icon">📊</div>
+          <div class="proj-name">SentimentScope</div>
+          <div class="proj-cat">NLP · Real-time Analytics</div>
+          <div class="proj-sep"></div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">
+            Multi-source real-time sentiment analyser pulling from NewsAPI, The Guardian,
+            and RSS feeds. Dual-engine pipeline: VADER for speed, RoBERTa for accuracy.
+            Compare mode across sources, India trending tab, sentiment-reactive UI,
+            SQLite history, and one-click CSV export.
+          </p>
+          <div class="proj-stack">
+            <span class="stag">RoBERTa</span>
+            <span class="stag">VADER</span>
+            <span class="stag">Streamlit</span>
+            <span class="stag">HuggingFace API</span>
+            <span class="stag">NewsAPI</span>
+            <span class="stag">Guardian API</span>
+            <span class="stag">SQLite</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://i-s-h-a-n-05-sentimentscope.streamlit.app"
+               target="_blank" class="lnk-live">↗ Live Demo</a>
+            <a href="https://github.com/I-s-h-a-n-05/SentimentScope"
+               target="_blank" class="lnk-gh">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DocTalk -->
+      <div class="proj-card card-doctalk reveal rd2">
+        <div class="proj-head">
+          <div class="proj-num">03 &mdash; DEPLOYING NOW</div>
+          <div class="proj-icon">◎</div>
+          <div class="proj-name">DocTalk</div>
+          <div class="proj-cat">RAG · Document AI</div>
+          <div class="proj-sep"></div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-desc">
+            AI document Q&amp;A with a full RAG pipeline — PDF → chunks → FAISS
+            vector index → Llama3-70B grounded generation with exact page citations.
+            Multi-document support, auto-summary on upload, voice input via Web Speech API,
+            SQLite-persisted chat history, and PDF/TXT export.
+          </p>
+          <div class="proj-stack">
+            <span class="stag">RAG</span>
+            <span class="stag">FAISS</span>
+            <span class="stag">Llama3-70B</span>
+            <span class="stag">Groq API</span>
+            <span class="stag">sentence-transformers</span>
+            <span class="stag">PyMuPDF</span>
+            <span class="stag">Streamlit</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/I-s-h-a-n-05/DocTalk"
+               target="_blank" class="lnk-live">↗ GitHub</a>
+            <span class="lnk-gh lnk-soon">🔒 Demo Soon</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section class="sec" id="about">
+  <div class="sec-inner">
+    <div class="sec-eye reveal">03 / about</div>
+    <div class="sec-title reveal">WHO I AM</div>
+    <div class="about-grid">
+      <div class="about-bio reveal">
+        <p>
+          I'm a <em>3rd year Computer Science student</em> obsessed with making ML
+          systems that actually work in production — not just in Jupyter notebooks.
+          My work spans <strong>deep learning, NLP, RAG pipelines, compiler design,
+          and embedded systems</strong>.
+        </p>
+        <p>
+          I build full-stack AI applications with real backends, proper databases,
+          and polished UIs — because a model that nobody can use doesn't matter.
+          Everything I build goes from <strong>concept to deployed product</strong>.
+        </p>
+        <p>
+          Currently deep-diving into <strong>LLM applications, vector search,</strong>
+          and anything that involves making language models reliably grounded in real data.
+        </p>
+      </div>
+      <div class="about-right reveal rd1">
+        <div class="about-fact">
+          <div class="fact-icon">🎓</div>
+          <div>
+            <div class="fact-label">Education</div>
+            <div class="fact-value">B.Tech Electronics and Computer Science · VIT Chennai · 2023–2027</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="fact-icon">📍</div>
+          <div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">India · Open to Remote Internships</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="fact-icon">🧪</div>
+          <div>
+            <div class="fact-label">Coursework</div>
+            <div class="fact-value">Deep Learning · NLP · Compiler Design · OS</div>
+          </div>
+        </div>
+        <div class="about-fact">
+          <div class="fact-icon">🎯</div>
+          <div>
+            <div class="fact-label">Seeking</div>
+            <div class="fact-value">ML / AI internships · Research collaborations · Open source</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SKILLS ═══ -->
+<section class="sec" id="skills">
+  <div class="sec-inner">
+    <div class="sec-eye reveal">04 / skills</div>
+    <div class="sec-title reveal">TECH<br>STACK</div>
+    <div class="skills-grid">
+
+      <div class="skill-grp reveal">
+        <div class="sg-title">// Machine Learning</div>
+        <div class="sg-tags">
+          <span class="sk">PyTorch</span>
+          <span class="sk">TensorFlow</span>
+          <span class="sk">scikit-learn</span>
+          <span class="sk">Transfer Learning</span>
+          <span class="sk">CNNs</span>
+          <span class="sk">EfficientNet</span>
+          <span class="sk">Focal Loss</span>
+          <span class="sk">LSTMs / GRUs</span>
+          <span class="sk">Transformers</span>
+          <span class="sk">BERT</span>
+        </div>
+      </div>
+
+      <div class="skill-grp reveal rd1">
+        <div class="sg-title">// NLP &amp; LLMs</div>
+        <div class="sg-tags">
+          <span class="sk">RAG Pipelines</span>
+          <span class="sk">FAISS</span>
+          <span class="sk">sentence-transformers</span>
+          <span class="sk">Groq API</span>
+          <span class="sk">HuggingFace</span>
+          <span class="sk">Llama3-70B</span>
+          <span class="sk">RoBERTa</span>
+          <span class="sk">VADER</span>
+          <span class="sk">TF-IDF / PPMI</span>
+          <span class="sk">CKY Parsing</span>
+        </div>
+      </div>
+
+      <div class="skill-grp reveal rd2">
+        <div class="sg-title">// Backend &amp; Dev</div>
+        <div class="sg-tags">
+          <span class="sk">Python</span>
+          <span class="sk">Flask</span>
+          <span class="sk">Streamlit</span>
+          <span class="sk">SQLite</span>
+          <span class="sk">REST APIs</span>
+          <span class="sk">PyMuPDF</span>
+          <span class="sk">Git &amp; GitHub</span>
+          <span class="sk">C / C++</span>
+        </div>
+      </div>
+
+      <div class="skill-grp reveal rd3">
+        <div class="sg-title">// CS Fundamentals</div>
+        <div class="sg-tags">
+          <span class="sk">Compiler Design</span>
+          <span class="sk">LR Parsing / SLR</span>
+          <span class="sk">8051 Assembly</span>
+          <span class="sk">Data Structures</span>
+          <span class="sk">Algorithms</span>
+          <span class="sk">Operating Systems</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CONTACT ═══ -->
+<section class="sec" id="contact">
+  <div class="sec-inner">
+    <div class="contact-wrap reveal">
+      <div>
+        <div class="sec-eye" style="margin-bottom:14px">05 / contact</div>
+        <div class="contact-head">
+          LET'S BUILD<br>SOMETHING<br><span>TOGETHER.</span>
+        </div>
+        <p class="contact-sub">
+          Open to  internships, research roles, and interesting AI collaborations.
+          
+        </p>
+        <a href="mailto:ishan05pandit@gmail.com" class="contact-email">
+          ✉ ishan05pandit@gmail.com
+        </a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/I-s-h-a-n-05" target="_blank" class="soc-link">
+          <span class="soc-icon">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </span>
+          github.com/I-s-h-a-n-05
+        </a>
+        <a href="https://www.linkedin.com/in/ishan-pandit-6235ab278?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="soc-link">
+          <span class="soc-icon">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </span>
+          linkedin.com/in/ishan-pandit-6235ab278
+        </a>
+        <a href="https://docs.google.com/document/d/1yOZ-HtX0v6_2Xz5IYU7R85uO27hXnw1O/edit?usp=sharing&ouid=114997436621640117845&rtpof=true&sd=true" target="_blank" class="soc-link">
+          <span class="soc-icon">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+          </span>
+          Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="foot-logo">ishan.dev</div>
+  <div class="foot-copy">© 2026 Ishan Pandit · Built with Python, PyTorch, and way too much Groq API credit.</div>
+</footer>
+
+
+<script>
+  // ── Scroll reveal ──
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ── Active nav link on scroll ──
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav .nav-link');
+  const navIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(a => {
+          const active = a.getAttribute('href') === '#' + id;
+          a.style.color = active ? 'var(--accent)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  secs.forEach(s => navIo.observe(s));
+</script>
