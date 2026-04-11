@@ -607,19 +607,40 @@
       max-width: 440px;
       margin-bottom: 32px;
     }
-    .contact- {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(var(--a-rgb), 0.5);
-      padding-bottom: 3px;
-      transition: color 0.2s, border-color 0.2s;
-    }
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+}
+
+.contact-email:hover {
+  border-color: rgba(var(--a-rgb), 0.4);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(var(--a-rgb), 0.15);
+}
+
+.email-icon {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.email-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
     .contact-email:hover { color: var(--accent); border-color: var(--accent); }
     .socials { display: flex; flex-direction: column; gap: 10px; min-width: 230px; }
     .soc-link {
